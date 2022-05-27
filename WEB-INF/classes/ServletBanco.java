@@ -2,6 +2,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.*;
+
 import java.io.PrintWriter;
 import java.io.IOException;
 
@@ -35,12 +37,65 @@ public class ServletBanco extends HttpServlet{
 
 		String transaccion, datos, respuesta;
 
+		/*Enumeration en=request.getParameterNames();
+		while(en.hasMoreElements()){
+
+			// 1 Checar transacción
+			Object objOri=en.nextElement();
+			transaccion = request.getParameter("boton");
+
+			// 2 Transacción Capturar:
+			if (transaccion.equals("Capturar Datos")){
+
+				// 2.1 Obtener datos del URL String
+				datos = obtenerDatos(request);
+
+				// 2.2 Capturar datos en BD
+				respuesta = banco.capturar(datos);
+
+				// 2.3 Enviar al server el resultado de la transaccion
+				response.sendRedirect("RespuestaServer1.jsp?datos="+respuesta);
+				break;
+			}
+
+			if (transaccion.equals("Consultar Clientes")){
+				
+				//1 Consultar datos de la BD
+				datos=banco.consultar();
+
+				//2 Mostrar los datos
+				//response.sendRedirect("RespuestaServer.jsp?datos="+datos);
+				respuestaServer(response,datos);
+				break;
+			}
+
+			if (transaccion.equals("Consultar Tipo Cuenta")){
+
+				//Obtener tipo de cuenta a consultar
+				String tcta = request.getParameter("tipo");
+
+				//Consultar cliente con ese tipo de cuenta
+				datos=banco.consultarTipo(tcta);
+
+				//Mostrar datos
+				response.sendRedirect("RespuestaServer.jsp?datos="+datos);
+				break;
+			}
+
+			if (transaccion.equals("Consultar No Cuenta")){
+				String nocta = request.getParameter("nocta");
+
+				datos=banco.consultarNocta(nocta);
+				response.sendRedirect("RespuestaServer.jsp?datos="+datos);
+				break;
+			}
+		}*/
+
 		// 1 Checar transacción
-		
-		transaccion = request.getParameter("boton");
+		//transaccion = request.getParameter("boton");
 
 		// 2 Transacción Capturar:
-		if (transaccion.equals("Capturar Datos")){
+		if (request.getParameter("bCapturar") != null){
 
 			// 2.1 Obtener datos del URL String
 			datos = obtenerDatos(request);
@@ -52,7 +107,7 @@ public class ServletBanco extends HttpServlet{
 			response.sendRedirect("RespuestaServer1.jsp?datos="+respuesta);
 		}
 
-		if (transaccion.equals("Consultar Clientes")){
+		if (request.getParameter("bConsultar") != null){
 			
 			//1 Consultar datos de la BD
 			datos=banco.consultar();
@@ -62,7 +117,7 @@ public class ServletBanco extends HttpServlet{
 			respuestaServer(response,datos);
 		}
 
-		if (transaccion.equals("Consultar Tipo Cuenta")){
+		if (request.getParameter("bConsultarTipo") != null){
 
 			//Obtener tipo de cuenta a consultar
 			String tcta = request.getParameter("tipo");
@@ -74,7 +129,7 @@ public class ServletBanco extends HttpServlet{
 			response.sendRedirect("RespuestaServer.jsp?datos="+datos);
 		}
 
-		if (transaccion.equals("Consultar No Cuenta")){
+		if (request.getParameter("bConsultarCuenta") != null){
 			String nocta = request.getParameter("nocta");
 
 			datos=banco.consultarNocta(nocta);

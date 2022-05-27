@@ -1,18 +1,25 @@
 <html>
-	<head><title>Apache y CGIs</title></head>
+	<head>
+		<title>Apache y Servlets</title>
+		<script type="text/javascript" src="js/funciones.js"></script>
+	</head>
 	<body>
-		<h2>Banco IoT</h2>
+		<h2>Banco AoT</h2>
 		<!--form action='../cgi-bin/ClienteController.py' method='get'-->
 		<form action='../banco/banco' method='get'>
 		<!--form action='../banco/Cliente.jsp' method='get'-->
-			NO. CUENTA:  <input type='text' name='nocta'><br/>
-			NOMBRE:      <input type='text' name='nombre'><br/>
-			TIPO CUENTA: <input type='text' name='tipo'><br/>
-			SALDO:       <input type='text' name='saldo'><br/><br/>
-					     <input type='submit' name='boton' value='Capturar Datos'>
-					     <input type='submit' name='boton' value='Consultar Clientes'>
-					     <input type='submit' name='boton' value='Consultar No Cuenta'>
-					     <input type='submit' name='boton' value='Consultar Tipo Cuenta'>
+			NO. CUENTA:  <input type='text' name='nocta' id="nocta"><br/>
+			NOMBRE:      <input type='text' name='nombre' id="nombre"><br/>
+			TIPO CUENTA: <input type='text' name='tipo' id="tipo"><br/>
+			SALDO:       <input type='text' name='saldo' id="saldo"><br/><br/>
+					     <input type='submit' name="bCapturar" value='Capturar Datos'>
+					     <input type='submit' name="bConsultar" value='Consultar Clientes'>
+					     <input type='submit' name="bConsultarCuenta" value='Consultar No Cuenta'>
+					     <input type='submit' name="bCosultarTipo" value='Consultar Tipo Cuenta'>
+					     <input type='button' name='bConsultarJson'     id='bConsultarJson'     value='Consultar Clientes JSON'    onclick='consultar()'>
+					     <input type='button' name='bConsultarTipoJson' id='bConsultarTipoJson' value='Consultar Tipo Cuenta JSON' onclick='consultarTipo()'>
 		</form>
+		<br/><br/>
+        	Transaccion: <div id='transaccion'></div>
 	</body>
 </html>
